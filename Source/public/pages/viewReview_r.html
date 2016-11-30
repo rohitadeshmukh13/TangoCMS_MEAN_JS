@@ -1,0 +1,163 @@
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Submission</h1>
+    </div>  
+    <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+<div class="row" ng-app="tango">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Submission
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <!-- <form role="form"> -->
+                        <form id="ViewReview" method="post" ng-controller="ReviewsCtrl" ng-init="reviewData=getObject();" role="form"> 
+                        <!-- class="form-horizontal" -->
+                        <!-- ng-init="review=getPaper();" -->
+                        <div class="form-group">
+                            <label>Review for Paper</label>
+                            <br>
+                            {{reviewData.forSubmission.title}}
+                        </div>
+
+                        <div class="panel panel-default form-group">
+                                <div class="panel-body">
+                                <label>Reviewer Expertise</label>
+                                <br>
+                                    <div class="radio">
+                                    <label>
+                                        <input type="radio" name="expertiseRadios" id="expertiseRadios1" value="1. Not familiar with the topic" ng-model="reviewData.reviewerExpertise" disabled>1. Not familiar with the topic
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="expertiseRadios" id="expertiseRadios2" value="2. Some understanding of the topic" ng-model="reviewData.reviewerExpertise" disabled>2. Some understanding of the topic
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="expertiseRadios" id="expertiseRadios3" value="3. Good understanding of the topic" ng-model="reviewData.reviewerExpertise" disabled>3. Good understanding of the topic
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="expertiseRadios" id="expertiseRadios4" value="4. Familiar with the topic" ng-model="reviewData.reviewerExpertise" disabled>4. Familiar with the topic
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="expertiseRadios" id="expertiseRadios5" value="5. Expert" ng-model="reviewData.reviewerExpertise" disabled>5. Expert
+                                    </label>
+                                </div>                                
+                            </div>
+                            </div>
+
+                            <div class="panel panel-default form-group">
+                                <div class="panel-body">
+                                <label>Overall Evaluation</label>
+                                <br>
+                                    <div class="radio">
+                                    <label>
+                                        <input type="radio" name="evalRadios" id="evalRadios1" value="1. Strongly rejected" ng-model="reviewData.overallEvaluation" disabled>1. Strongly rejected
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="evalRadios" id="evalRadios2" value="2. More work needed" ng-model="reviewData.overallEvaluation" disabled>2. More work needed
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="evalRadios" id="evalRadios3" value="3. Can be improved" ng-model="reviewData.overallEvaluation" disabled>3. Can be improved
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="evalRadios" id="evalRadios4" value="4. Minor changes needed" ng-model="reviewData.overallEvaluation" disabled>4. Minor changes needed
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="evalRadios" id="evalRadios5" value="5. Strongly accepted" ng-model="reviewData.overallEvaluation" disabled>5. Strongly accepted
+                                    </label>
+                                </div>
+                            </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Summary</label>
+                                <br>
+                                {{reviewData.summary}}
+                            </div>
+
+                            <div class="form-group">
+                                <label>Major Strong Points</label>
+                                <br>
+                                {{reviewData.strongPoints}}
+                            </div>
+
+                            <div class="form-group">
+                                <label>Major Weak Points</label>
+                                <br>
+                                {{reviewData.weakPoints}}
+                            </div>
+
+                            <div class="form-group">
+                                <label>Detailed Comments</label>
+                                <br>
+                                {{reviewData.detailedComments}}
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Date of Submission</label>
+                                <br>
+                                {{reviewData.createdAt | date:'dd MMM yyyy'}}
+                            </div>
+                            <div class="form-group">
+                                <label>Conference</label>
+                                <br>
+                                ACM
+                            </div>
+
+                            <div class="panel panel-default form-group">
+                                <div class="panel-heading">
+                                    <label>Decision</label>
+                                </div>
+                                <div class="panel-body">
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="paperStatus" id="paperStatusAccept" value="Accepted" ng-model="reviewData.forSubmission.status" disabled>Accept
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="paperStatus" id="paperStatusReject" value="Rejected" ng-model="reviewData.forSubmission.status" disabled>Reject
+                                    </label>
+                                </div>
+                            </div>
+                            </div>
+                            
+                            <button type="submit" ng-show="!reviewDeadlinePassed" ui-sref="home.editReview" class="btn btn-default">Edit
+                            </button>
+                            <button type="submit" ng-show="reviewDeadlinePassed" ui-sref="home.XReview" class="btn btn-default">Edit
+                            </button>
+
+                            <button type="back" ui-sref="home.listMyReviews" class="btn btn-default">Back</button>
+                        </form>
+                    </div>
+                    <!-- /.col-lg-6 (nested) -->
+                    
+                    <!-- /.col-lg-6 (nested) -->
+                </div>
+                <!-- /.row (nested) -->
+            </div>
+            <!-- /.panel-body -->
+        </div>
+        <!-- /.panel -->
+    </div>
+    <!-- /.col-lg-12 -->
+</div>

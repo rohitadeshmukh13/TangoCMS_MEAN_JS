@@ -1,0 +1,111 @@
+<link rel="stylesheet" href="//cdn.jsdelivr.net/bootstrap.tagsinput/0.4.2/bootstrap-tagsinput.css" />
+<script src="//cdn.jsdelivr.net/bootstrap.tagsinput/0.4.2/bootstrap-tagsinput.min.js"></script>
+
+<!-- <link rel="stylesheet" href="bower_components/bootstrap-tagsinput/dist/bootstrap-tagsinput.css" />
+<script src="bower_components/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js"></script> -->
+
+<style type="text/css">
+.bootstrap-tagsinput {
+    width: 100%;
+}
+.label {
+    line-height: 2;
+}
+</style>
+
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Submission</h1>
+    </div>  
+    <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+<div class="row" ng-app="tango">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Submission
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <!-- <form role="form"> -->
+                        <form id="ViewSub" method="post" ng-controller="PapersCtrl" ng-init="paper=getPaper();" role="form"> 
+                        <!-- class="form-horizontal" -->
+                        <!-- ng-init="paper=getPaper();" -->
+                        <div class="form-group">
+                            <label>Title</label>
+                            <br>
+                            {{paper.title}}
+                        </div>
+                            <div class="form-group">
+                                <label>Authors</label>
+                                <br>
+                                <div ng-repeat="auth in paper.authors" style="float:left">
+                                    <!-- <a ui-sref="home.authorProfile"> -->
+                                        {{auth.username}}
+                                    <!-- </a> -->
+                                    ;
+                                    &nbsp;
+                                </div>
+                                <!-- <a ui-sref="home.authorProfile">Name1</a> ,
+                                <a ui-sref="home.authorProfile">Name2</a> -->
+                            </div>
+                            <br>
+                            <div class="form-group">
+                                <label>Abstract</label>
+                                <br>
+                                    {{paper.abstract}}
+                            </div>
+                            <div class="form-group">
+                                <label>Tags</label>
+                                <br>
+                                <!-- <div ng-repeat="keyword in paper.keywords" data-role="tagsinput">
+                                    {{keyword}}
+                                </div> -->
+                                <input type="text" data-role="tagsinput" style="border:none" ng-model="paper.keywords" readonly="true" disabled="true">
+                            </div>
+                            <div class="form-group">
+                                <label>Status</label>
+                                <br>
+                                {{paper.status}}
+                            </div>
+                            <div class="form-group">
+                                <label>Date of Submission</label>
+                                <br>
+                                {{paper.createdAt | date:'dd MMM yyyy'}}
+                            </div>
+                            <div class="form-group">
+                                <label>Conference</label>
+                                <br>
+                                ACM
+                            </div>
+                            <div class="form-group">
+                                <label>Attachment</label>
+                                <br>
+                                <a download="{{paper.filename}}" href="{{fileurl}}" ng-click="downloadFile(paper._id);">
+                                    {{paper.filename}}
+                                </a>
+                            </div>
+                            <button type="submit" ng-show="!submissionDeadlinePassed;" ui-sref="home.editSub" class="btn btn-default">Edit
+                            </button>
+                            <button type="submit" ng-show="submissionDeadlinePassed;" ui-sref="home.XSub" class="btn btn-default">Edit
+                            </button>
+                                <button ng-click="deletePaper(paper._id);" class="btn btn-default">
+                                    Withdraw
+                                </button>
+                            <button type="back" ui-sref="home.listMySubs" class="btn btn-default">Back</button>
+                        </form>
+                    </div>
+                    <!-- /.col-lg-6 (nested) -->
+                    
+                    <!-- /.col-lg-6 (nested) -->
+                </div>
+                <!-- /.row (nested) -->
+            </div>
+            <!-- /.panel-body -->
+        </div>
+        <!-- /.panel -->
+    </div>
+    <!-- /.col-lg-12 -->
+</div>

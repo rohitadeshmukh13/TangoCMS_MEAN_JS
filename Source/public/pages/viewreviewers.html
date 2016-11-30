@@ -1,0 +1,54 @@
+<div ng-init="getAllReviewers()">
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">List of Reviewers</h1>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                All Reviewers participating in the Conference
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+                <div class="dataTable_wrapper">
+                    <table class="table table-striped table-bordered table-hover" id="dataTables-example" ng-repeat="paper in papersForReviewer">
+                        <thead>
+                        <tr>
+                            <th>{{paper.title}}</th>
+                        </tr>
+                            <tr>
+                                <th>Full Name</th>
+                                <th>Institution</th>
+                                <th>Email address</th>
+                                <th>Mobile Number</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="rev in paper.reviewer">
+                                                           
+                                <td>{{rev.firstname}} {{rev.lastname}}</td>
+                                <td>{{rev.organization}}</td>
+                                <td class="center">{{rev.email}}</td>
+                                <td>{{rev.mob}}</td>
+                               
+                            </tr>
+                           
+
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.table-responsive -->
+
+            </div>
+            <!-- /.panel-body -->
+        </div>
+        <!-- /.panel -->
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+</div>
